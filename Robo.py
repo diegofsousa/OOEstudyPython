@@ -6,12 +6,20 @@ class Point(object):
 		self.x = x
 		self.y = y
 
+	def __str__(self):
+		return '<%s, %s>'%(self.x, self.y)
+
 class Reward(Point):
 	"""docstring for Reward"""
 	def __init__(self, x, y, name):
 		super(Reward, self).__init__(x, y)
 		self.name = name
-		
+
+	def __str__(self):
+		return '<%s, %s>: %s'%(self.x, self.y, self.name)
+	
+	def __repr__(self):
+		return '<Reward> %s' %str(self)	
 
 class Robo(Point):
 	"""docstring for Robo"""
@@ -42,3 +50,28 @@ def check_reward(robot, rewards):
 r1 = Reward(random.randint(0,10), random.randint(0,10), 'moeda')
 r2 = Reward(random.randint(0,10), random.randint(0,10), 'gasolina')
 r3 = Reward(random.randint(0,10), random.randint(0,10), 'arma')
+r4 = Reward(random.randint(0,10), random.randint(0,10), 'moeda')
+r5 = Reward(random.randint(0,10), random.randint(0,10), 'gasolina')
+r6 = Reward(random.randint(0,10), random.randint(0,10), 'arma')
+r7 = Reward(random.randint(0,10), random.randint(0,10), 'moeda')
+r8 = Reward(random.randint(0,10), random.randint(0,10), 'gasolina')
+r9 = Reward(random.randint(0,10), random.randint(0,10), 'arma')
+rewards = [r1,r2,r3,r4,r5,r6,r7,r8,r9]
+
+robot = Robo(random.randint(0, 10), random.randint(0, 10))
+
+for i in range(10):
+	moviment = input('Digite up, down, left ou right para o movimento: ')
+	if moviment == 'up':
+		robot.move_up()
+	elif moviment == 'down':
+		robot.move_down()
+	elif moviment == 'left':
+		robot.move_left()
+	elif moviment == 'right':
+		robot.move_right()
+	else:
+		print('Movimento inválido')
+		continue
+	print(robot)
+	check_reward(robot, rewards)
